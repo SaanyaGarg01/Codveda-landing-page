@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern UI with Tailwind</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom Background */
+        body {
+            background: linear-gradient(to right, #1e3c72, #2a5298);
+            background-size: cover;
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Glassmorphism Effect */
+        .glass {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="text-white">
+
+    <!-- Navbar -->
+    <nav class="bg-transparent fixed top-0 left-0 w-full z-50 p-4 shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold tracking-wider">✨ MyBrand</h1>
+            <ul class="hidden md:flex space-x-6 text-lg">
+                <li><a href="#" class="hover:text-yellow-400">Home</a></li>
+                <li><a href="#" class="hover:text-yellow-400">About</a></li>
+                <li><a href="#" class="hover:text-yellow-400">Features</a></li>
+                <li><a href="#" class="hover:text-yellow-400">Contact</a></li>
+            </ul>
+            <button class="md:hidden text-2xl">☰</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="h-screen flex flex-col justify-center items-center text-center px-6">
+        <div class="glass p-10 max-w-2xl">
+            <h2 class="text-5xl font-extrabold">Welcome to <span class="text-yellow-300">MyBrand</span></h2>
+            <p class="text-lg text-gray-200 mt-4">Your one-stop solution for modern, beautiful, and accessible UI design.</p>
+            <button class="mt-6 px-6 py-3 bg-yellow-400 text-gray-900 font-bold rounded-lg hover:bg-yellow-500 transition duration-300">
+                Get Started
+            </button>
+        </div>
+    </header>
+
+    <!-- Features Section -->
+    <section class="container mx-auto px-6 py-16">
+        <h3 class="text-4xl font-bold text-center">🚀 Key Features</h3>
+        <div class="grid md:grid-cols-3 gap-8 mt-10">
+            <div class="glass p-6 text-center">
+                <h4 class="text-2xl font-semibold">⚡ Fast & Responsive</h4>
+                <p class="text-gray-300 mt-2">Built with Tailwind CSS for lightning-fast development.</p>
+            </div>
+            <div class="glass p-6 text-center">
+                <h4 class="text-2xl font-semibold">🎨 Customizable</h4>
+                <p class="text-gray-300 mt-2">Easily tweak colors, typography, and layout.</p>
+            </div>
+            <div class="glass p-6 text-center">
+                <h4 class="text-2xl font-semibold">🌍 Accessible</h4>
+                <p class="text-gray-300 mt-2">Optimized for screen readers and all devices.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action (CTA) -->
+    <section class="text-center py-16 bg-yellow-400 text-gray-900">
+        <h3 class="text-4xl font-bold">🚀 Ready to Get Started?</h3>
+        <p class="mt-2 text-lg">Join us today and build stunning UIs effortlessly.</p>
+        <button class="mt-6 px-6 py-3 bg-gray-900 text-yellow-400 font-bold rounded-lg hover:bg-gray-800 transition duration-300">
+            Sign Up Now
+        </button>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center p-6 bg-gray-900 text-gray-300 mt-6">
+        <p>© 2025 MyBrand. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
