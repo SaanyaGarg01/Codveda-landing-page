@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive GSAP UI</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- GSAP Animation Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+        /* Gradient Background */
+        body {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* Scroll Indicator */
+        #progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 5px;
+            background: yellow;
+            z-index: 100;
+        }
+
+        /* Button Effects */
+        .animated-btn {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .animated-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(255, 255, 0, 0.6);
+        }
+        .animated-btn:active {
+            transform: scale(0.9);
+        }
+
+        /* Floating Action Button */
+        .floating-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: yellow;
+            padding: 12px 20px;
+            border-radius: 50px;
+            font-weight: bold;
+            color: black;
+            box-shadow: 0 5px 15px rgba(255, 255, 0, 0.4);
+            transition: transform 0.3s ease;
+            animation: bounce 2s infinite;
+        }
+        .floating-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Bounce Animation */
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Scroll Progress Bar -->
+    <div id="progress-bar"></div>
+
+    <!-- Hero Section -->
+    <section class="h-screen flex flex-col justify-center items-center text-center">
+        <h1 class="text-6xl font-extrabold opacity-0">Welcome to <span class="text-yellow-300">GSAP World</span></h1>
+        <p class="text-lg text-gray-300 mt-4 opacity-0">Animating websites like magic with GSAP.</p>
+        <button onclick="scrollToSection('features')" class="mt-6 px-6 py-3 bg-yellow-400 text-gray-900 font-bold rounded-lg animated-btn opacity-0">
+            Explore More
+        </button>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="container mx-auto px-6 py-16">
+        <h3 class="text-4xl font-bold text-center">🚀 Stunning Animations</h3>
+        <div class="grid md:grid-cols-3 gap-8 mt-10">
+            <div class="feature-card p-6 text-center bg-white/10 rounded-lg shadow-lg opacity-0">
+                <h4 class="text-2xl font-semibold">🔥 Page Load Effects</h4>
+                <p class="text-gray-300 mt-2">Smooth transitions and fade-ins.</p>
+            </div>
+            <div class="feature-card p-6 text-center bg-white/10 rounded-lg shadow-lg opacity-0">
+                <h4 class="text-2xl font-semibold">🎢 Scroll Animations</h4>
+                <p class="text-gray-300 mt-2">Elements move in as you scroll.</p>
+            </div>
+            <div class="feature-card p-6 text-center bg-white/10 rounded-lg shadow-lg opacity-0">
+                <h4 class="text-2xl font-semibold">✨ Hover Effects</h4>
+                <p class="text-gray-300 mt-2">Buttons and elements scale interactively.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="text-center py-16 bg-yellow-400 text-gray-900">
+        <h3 class="text-4xl font-bold">🚀 Ready to Get Started?</h3>
+        <p class="mt-2 text-lg">Join us today and build stunning UIs effortlessly.</p>
+        <button onclick="showSignupAlert()" class="mt-6 px-6 py-3 bg-gray-900 text-yellow-400 font-bold rounded-lg animated-btn">
+            Sign Up Now
+        </button>
+    </section>
+
+    <!-- Floating Action Button -->
+    <button class="floating-btn" onclick="scrollToTop()">⬆ Back to Top</button>
+
+    <!-- Footer -->
+    <footer class="text-center p-6 bg-gray-900 text-gray-300 mt-6">
+        <p>© 2025 GSAP Magic. All Rights Reserved.</p>
+    </footer>
+
+    <!-- GSAP Animations -->
+    <script>
+        // Hero Section Animations
+        gsap.to("h1", { opacity: 1, y: -10, duration: 1, ease: "power2.out" });
+        gsap.to("p", { opacity: 1, y: -10, duration: 1, delay: 0.5, ease: "power2.out" });
+        gsap.to("button", { opacity: 1, y: -10, duration: 1, delay: 1, ease: "power2.out" });
+
+        // Scroll Animations for Features Section
+        gsap.utils.toArray(".feature-card").forEach((card, index) => {
+            gsap.fromTo(card, 
+                { opacity: 0, y: 50 }, 
+                { opacity: 1, y: 0, duration: 1, ease: "power2.out", scrollTrigger: card }
+            );
+        });
+
+        // Scroll Progress Bar
+        window.addEventListener("scroll", function() {
+            let winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("progress-bar").style.width = scrolled + "%";
+        });
+
+        // Smooth Scroll to Sections
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+        }
+
+        // Smooth Scroll to Top
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Signup Button Click Action
+        function showSignupAlert() {
+            gsap.to("button", { scale: 1.2, duration: 0.2, yoyo: true, repeat: 1 });
+            setTimeout(() => {
+                alert("🎉 Signup Successful! Welcome to GSAP World! 🚀");
+            }, 300);
+        }
+    </script>
+
+</body>
+</html>
